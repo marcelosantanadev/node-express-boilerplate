@@ -1,0 +1,17 @@
+{
+  "name": "nodeproject-boilerplate",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Marcelo Santana <marcelo.oreen@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
