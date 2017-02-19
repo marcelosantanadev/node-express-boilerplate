@@ -1,8 +1,9 @@
-let config = require('..config/config')
+let config = require('../config/config')
     , http = require('http')
     , debug = require('debug')(config.debugServerName)
-    , path = require('path')
-    , app = require('../app');
+    , path = require('path');
+
+let app = require('../app')();
 let port = normalizePort(app.get('port'));
 
 // require('../config/database.js')(config.db, config.dbOptions);
@@ -55,6 +56,7 @@ function onListening() {
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
+    console.log('Listening on ' + bind);
 }
 
 module.exports = app;

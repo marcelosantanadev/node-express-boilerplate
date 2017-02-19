@@ -8,10 +8,12 @@ let express = require('express')
     , bodyParser = require('body-parser')
     , Cache = require('node-cache')
     , helmet = require('helmet')
+    , favicon = require('serve-favicon')
     , shortid = require('shortid');
 
 module.exports = function () {
     let app = express();
+
     let cache = new Cache({stdTTL: 180, checkperiod: 185});
     cache.set('auth', {token: shortid.generate()}, 10000);
     cache.on('expired', function (k, v) {
@@ -19,7 +21,7 @@ module.exports = function () {
     });
     app.set('cache', cache);
 
-    let port = config.port || process.env.PORT;
+    let port = config.port || process.env.PORT || 80;
     app.set('port', port);
 
     app.set('view engine', 'ejs');
@@ -40,6 +42,7 @@ module.exports = function () {
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(cookieParser());
     app.use(cors({credentials: true}));
+    app.use(favicon(__dirname + '/public/img/logo.png'));
 
 
     load('utils', {verbose: true})
@@ -61,7 +64,7 @@ module.exports = function () {
     }
 
     app.use(function (req, res, next) {
-        var err = new Error('Not Found');
+        let err = new Error('Not Found');
         err.status = 404;
         next(err);
     });
