@@ -1,11 +1,11 @@
 module.exports = function (app) {
-    let controller = {}
-        , handleError = app.utils.handleError;
+  let controller = {}
+    , handleError = app.utils.handleError;
 
 
-    controller.getRoute = function (req, res) {
-        return res.render('index', {});
-    };
+  controller.getRoute = function (req, res) {
+    return res.render('index', {});
+  };
 
-    return controller;
+  return controller;
 };
